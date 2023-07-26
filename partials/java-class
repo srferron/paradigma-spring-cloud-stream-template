@@ -60,7 +60,6 @@
 
 {%- if modelClass.isSubClass() %}
 {{ indent3 }}+ " super: " + super.toString(){% endif %}
-{{ indent3 }}+ " ]";
 {{ indent2 }}}
 {{ indent1 }}}{% endif -%}
 {%- endmacro -%}
