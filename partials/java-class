@@ -31,9 +31,7 @@
 {%- set variableName = realClassName | identifierName -%}
 {%- set typeInfo = [realClassName, realClassName, prop] | fixType -%}
 {%- set type = typeInfo[0] %}
-{% if variableName !== name -%}
 {{ indent2 }}@JsonProperty("{{name}}")
-{% endif -%}
 {{ indent2 }}private {{ type }} {{ variableName }};
 {%- endfor %}
 
