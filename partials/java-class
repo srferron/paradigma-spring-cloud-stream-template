@@ -45,9 +45,6 @@
 {%- set typeInfo = [name, realClassName, prop] | fixType -%}
 {% set type = typeInfo[0] -%}
 {% set isArrayOfObjects = typeInfo[1] %}
-{{ indent2 }}public {{ type }} get{{- realClassName }}() {
-{{ indent3 }}return {{ variableName }};
-{{ indent2 }}}
 
 {# Inner classes #}
 {%- set innerModelClass = {schema: prop, schemaName: variableName} | getModelClass %}
@@ -63,19 +60,6 @@
 {%- endif %}
 {%- endfor -%}
 
-{{ indent2 }}public String toString() {
-{{ indent3 }}return "{{ className }} ["
-{%- for name, prop in properties %}
-{%- set propModelClass = {schema: prop, schemaName: name} | getModelClass %}
-{%- set realClassName = propModelClass.getClassName() %}
-{%- set variableName = realClassName | identifierName %}
-{%- set typeInfo = [realClassName, realClassName, prop] | fixType -%}
-{%- set type = typeInfo[0] %}
-{{ indent3 }}+ " {{ variableName }}: " + {{ variableName }}
-{%- if type === 'Object' -%}
-.toString()
-{%- endif -%}
-{%- endfor %}
 {%- if modelClass.isSubClass() %}
 {{ indent3 }}+ " super: " + super.toString(){% endif %}
 {{ indent3 }}+ " ]";
