@@ -16,9 +16,7 @@
 {{ indent1 }}@JsonInclude(JsonInclude.Include.NON_NULL)
 {{ indent1 }}public {% if isStatic %}static {% endif %}class {{ className }}
 {%- if modelClass.isSubClass() %} extends {{ modelClass.getSuperClassName() }}{% endif %} {
-{# Default constructor #}
-{{ indent2 }}public {{ className }} () {
-{{ indent2 }}}
+
 {# If the top level object is an array, we need to deal with that specially. -#}
 {%- if schema and schema.type() === 'array' -%}
 {{ allArgsConstructor(className, schema.items().properties(), indentLevel) }}
@@ -51,10 +49,6 @@
 {{ indent3 }}return {{ variableName }};
 {{ indent2 }}}
 
-{{ indent2 }}public {{ className }} set{{- realClassName }}({{ type }} {{ variableName }}) {
-{{ indent3 }}this.{{-variableName }} = {{ variableName }};
-{{ indent3 }}return this;
-{{ indent2 }}}
 {# Inner classes #}
 {%- set innerModelClass = {schema: prop, schemaName: variableName} | getModelClass %}
 {%- if prop.type() === 'object' and innerModelClass and innerModelClass.canBeInnerClass() %}
