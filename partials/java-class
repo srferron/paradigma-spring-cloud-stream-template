@@ -11,7 +11,7 @@
 {{ 'javaClass' | logJavaClass -}}
 {{ className | logJavaClass -}}
 {% set indent1 = indentLevel | indent1 -%}
-{% set indent2 =  | indent2 -%}
+{% set indent2 = indentLevel | indent2 -%}
 {% set indent3 = indentLevel | indent3 -%}
 {{ indent1 }}public {% if isStatic %}static {% endif %}class {{ className }}
 {%- if modelClass.isSubClass() %} extends {{ modelClass.getSuperClassName() }}{% endif %} {
