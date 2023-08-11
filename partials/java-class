@@ -13,7 +13,6 @@
 {% set indent1 = indentLevel | indent1 -%}
 {% set indent2 = indentLevel | indent2 -%}
 {% set indent3 = indentLevel | indent3 -%}
-{{ indent1 }}@JsonInclude(JsonInclude.Include.NON_NULL)
 {{ indent1 }}public {% if isStatic %}static {% endif %}class {{ className }}
 {%- if modelClass.isSubClass() %} extends {{ modelClass.getSuperClassName() }}{% endif %} {
 
