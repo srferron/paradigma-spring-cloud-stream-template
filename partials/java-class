@@ -13,6 +13,7 @@
 {% set indent1 = indentLevel | indent1 -%}
 {% set indent2 = indentLevel | indent2 -%}
 {% set indent3 = indentLevel | indent3 -%}
+{% set jsonname = _.snakeCase(name) -%}
 {{ indent1 }}public {% if isStatic %}static {% endif %}class {{ className }}
 {%- if modelClass.isSubClass() %} extends {{ modelClass.getSuperClassName() }}{% endif %} {
 
@@ -30,7 +31,7 @@
 {%- set variableName = realClassName | identifierName -%}
 {%- set typeInfo = [realClassName, realClassName, prop] | fixType -%}
 {%- set type = typeInfo[0] %}
-{{ indent2 }}@JsonProperty("{{_.snakeCase(name)}}")
+{{ indent2 }}@JsonProperty("{{jsonname}}")
 {{ indent2 }}private {{ type }} {{ variableName }};
 {%- endfor %}
 
