@@ -30,7 +30,7 @@
 {%- set variableName = realClassName | identifierName -%}
 {%- set typeInfo = [realClassName, realClassName, prop] | fixType -%}
 {%- set type = typeInfo[0] %}
-{{ indent2 }}@JsonProperty("{{name.replace(/[^A-Za-z0-9_]/g, '').replace(/([A-Z]+)/g, " $1").replace(/\s+/g, ' ').trim().toLowerCase().replace(/\s/g, '')}}")
+{{ indent2 }}@JsonProperty("{{(name.replace(/[^A-Za-z0-9_]/g, '').replace(/([A-Z]+)/g, " $1").replace(/\s+/g, ' ').trim().toLowerCase().replace(/\s/g, '')}}")
 {{ indent2 }}private {{ type }} {{ variableName }};
 {%- endfor %}
 
