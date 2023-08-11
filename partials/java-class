@@ -1,4 +1,3 @@
-{% const _ = require('lodash') -%}
 {% from "partials/all-args-constructor" import allArgsConstructor -%}
 {%- macro javaClass(schemaName, schema, properties, indentLevel, isStatic) %}
 {%- set modelClass = {schema: schema, schemaName: schemaName} | getModelClass %}
@@ -12,7 +11,7 @@
 {{ 'javaClass' | logJavaClass -}}
 {{ className | logJavaClass -}}
 {% set indent1 = indentLevel | indent1 -%}
-{% set indent2 = indentLevel | indent2 -%}
+{% set indent2 =  | indent2 -%}
 {% set indent3 = indentLevel | indent3 -%}
 {{ indent1 }}public {% if isStatic %}static {% endif %}class {{ className }}
 {%- if modelClass.isSubClass() %} extends {{ modelClass.getSuperClassName() }}{% endif %} {
@@ -31,8 +30,7 @@
 {%- set variableName = realClassName | identifierName -%}
 {%- set typeInfo = [realClassName, realClassName, prop] | fixType -%}
 {%- set type = typeInfo[0] %}
-{%- set jsonname = _.snakeCase(name) -%}
-{{ indent2 }}@JsonProperty("{{jsonname}}")
+{{ indent2 }}@JsonProperty("{{name.replace(/[^A-Za-z0-9_]/g, '').replace(/([A-Z]+)/g, " $1").replace(/\s+/g, ' ').trim().toLowerCase().replace(/\s/g, '')}}")
 {{ indent2 }}private {{ type }} {{ variableName }};
 {%- endfor %}
 
