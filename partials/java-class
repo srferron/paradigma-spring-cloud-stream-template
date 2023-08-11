@@ -1,3 +1,4 @@
+{% const _ = require('lodash') -%}
 {% from "partials/all-args-constructor" import allArgsConstructor -%}
 {%- macro javaClass(schemaName, schema, properties, indentLevel, isStatic) %}
 {%- set modelClass = {schema: schema, schemaName: schemaName} | getModelClass %}
