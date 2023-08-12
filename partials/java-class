@@ -30,7 +30,7 @@
 {%- set variableName = realClassName | identifierName -%}
 {%- set typeInfo = [realClassName, realClassName, prop] | fixType -%}
 {%- set type = typeInfo[0] %}
-{{ indent2 }}@JsonProperty("{{(name}}")
+{{ indent2 }}@JsonProperty("{{(modelClass.getSnakeCase(name)}}")
 {{ indent2 }}private {{ type }} {{ variableName }};
 {%- endfor %}
 
