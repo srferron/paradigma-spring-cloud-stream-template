@@ -12,11 +12,11 @@
 {%- set variableName = realClassName | identifierName %}
 {%- set typeInfo = [name, realClassName, prop] | fixType %}
 {%- set type = typeInfo[0] -%}
-@JsonProperty("{{ propModelClass.getSnakeCase(name) }}")
 {%- if first -%}
 {%- set first = false -%}
 {%- else -%}
 , {% endif %}
+@JsonProperty("{{ propModelClass.getSnakeCase(name) }}") 
 {{ indent3 }}{{ type }} {{ variableName }}
 {%- endfor -%}
 ) {
